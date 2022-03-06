@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 import "./ownable.sol";
@@ -39,7 +40,8 @@ uint cooldownTime = 1 days;           //time between two concesutive attacks by 
   want users to create a zombie of any name and data, it will be called by other fn which will
   assign a dna and name from its side to the zombie*/
 
-    uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime), 0, 0)) - 1;
+    zombies.push(Zombie(_name, _dna, 1, uint32(block.timestamp + cooldownTime), 0, 0));
+    uint id = zombies.length - 1;
     /*this line pushes the zombie in the zombies array and returns the lenght of the array
     we -1 from the length and stors it in the id uint which gives us the id of the zombie*/
 
